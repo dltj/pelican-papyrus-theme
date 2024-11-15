@@ -1,0 +1,110 @@
+<!-- Hamburger Button for Mobile -->
+<nav class="bg-gray-800 text-white px-2 py-3 flex justify-between items-center">
+  <h1 class="text-xl font-bold"><a href="{{ SITEURL }}/">{{ SITENAME }}</a></h1>
+  <button class="p-2 focus:outline-none md:hidden" id="menu-toggle">
+    <svg
+      class="w-6 h-6"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M4 6h16M4 12h16M4 18h16"
+      ></path>
+    </svg>
+  </button>
+</nav>
+
+<!-- Fixed Sidebar for larger screens / Collapsible for smaller screens -->
+<nav
+  class="bg-gray-800 text-white fixed top-4 right-10 w-60 pb-5 sm:w-40 md:w-80 md:h-full md:top-0 md:left-0 md:block hidden sidebar"
+  id="sidebar"
+>
+  <h1 class="font-semibold text-2xl px-4 my-10 hidden md:block text-center">
+    <a href="{{ SITEURL }}/">
+      <img
+        class="profile-picture"
+        src="{{ SITEURL }}/assets/images/{{ PROFILE_IMAGE }}"
+      />
+      {{ SITENAME }}
+    </a>
+  </h1>
+
+  <ul class="px-2">
+    {% if DISPLAY_PAGES_ON_MENU %} {% for p in pages %}
+    <li class="p-2">
+      <a
+        class="hover:bg-gray-700 block rounded"
+        href="{{ SITEURL }}/{{ p.url }}"
+        >{{ p.title }}</a
+      >
+    </li>
+    {% endfor %} {% endif %}
+    <li class="p-2">
+      <a
+        href="{{ SITEURL }}/{{ CATEGORIES_URL if CATEGORIES_URL else 'categories.html' }}"
+        class="hover:bg-gray-700 block rounded"
+        >Categories</a
+      >
+    </li>
+    <li class="p-2">
+      <a
+        href="{{ SITEURL }}/{{ TAGS_URL if TAGS_URL else 'tags.html' }}"
+        class="hover:bg-gray-700 block rounded"
+        >Tags</a
+      >
+    </li>
+    {% if MENUITEMS %} {% for title, url in MENUITEMS %}
+    <li class="p-2">
+      <a href="{{ url }}" class="hover:bg-gray-700 block rounded"
+        >{{ title }}</a
+      >
+    </li>
+    {% endfor %} {% endif %}
+  </ul>
+
+  {% if SOCIAL or FEED_ALL_ATOM or FEED_ALL_RSS %}
+  <ul class="flex px-2 space-x-4 text-lg">
+    {% for name, link in SOCIAL %}
+    <li>
+      <a
+        href="{{ link }}"
+        target="_blank"
+        rel="noopener noreferrer"
+        title="{{ name|capitalize}}"
+        aria-label="{{ name|capitalize }}"
+        ><i class="fab fa-{{ name }} fa-lg"></i
+      ></a>
+    </li>
+    {% endfor %} {% if FEED_ALL_ATOM %}
+    <li>
+      <a
+        href="{{ FEED_DOMAIN }}/
+                        {% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}"
+        type="application/atom+xml"
+        title="{{ FEED_ALL_ATOM }}"
+        rel="alternate"
+        ><i class="fa fa-rss fa-lg" aria-hidden="true"></i
+      ></a>
+    </li>
+    {% endif %} {% if FEED_ALL_RSS %}
+    <li>
+      <a
+        href="{{ FEED_DOMAIN }}/
+                        {% if FEED_ALL_RSS_URL %}{{ FEED_ALL_RSS_URL }}{% else %}{{ FEED_ALL_RSS }}{% endif %}"
+        type="application/rss+xml"
+        title="{{ FEED_ALL_RSS }}"
+        rel="alternate"
+        ><i class="fa fa-rss fa-lg" aria-hidden="true"></i
+      ></a>
+    </li>
+    {% endif %}
+  </ul>
+  {% endif %}
+  <p class="px-3 pt-10 drop-shadow text-lg">Peter E. Murray</p>
+  <p class="italic px-3 text-sm">{{ BIO }}</p>
+</nav>

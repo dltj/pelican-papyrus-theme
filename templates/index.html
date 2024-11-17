@@ -33,15 +33,24 @@ not category and not tag %}
           {{ article.summary }}
         </div>
         <div class="flex text-xs text-zinc-800 dark:text-zinc-400">
+          <i class="far fa-calendar-alt" aria-hidden="true"></i
+          >&nbsp;Posted&nbsp;on&nbsp;
           <time>{{ article.date|strftime('%B %d, %Y') }}</time>
+          {% if article.modified %}
+          <div class="flex text-xs text-zinc-800 dark:text-zinc-400">
+            <span>
+              &nbsp;and last updated {{ article.modified|strftime('%B %d, %Y')
+              }}</span
+            >
+          </div>
+          {% endif %}
           <div>
             {% if article.readtime %}
-            <span>&nbsp;·&nbsp;{{ article.readtime }} min read</span>
-            {% endif %}
-          </div>
-          <div>
-            {% if article.author != '' %}
-            <span>&nbsp;·&nbsp;{{ article.author }}</span>
+            <span
+              >&nbsp;·&nbsp;<i class="far fa-clock" aria-hidden="true"></i
+              >&nbsp;{{ article.readtime
+              }}&nbsp;minutes&nbsp;reading&nbsp;time</span
+            >
             {% endif %}
           </div>
         </div>

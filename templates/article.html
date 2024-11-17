@@ -4,9 +4,9 @@
   name="description"
   content="{{ article.summary | striptags | safe | truncate(150) }}"
 />
-{% endif %} {% endblock %} {% block title %}{{ article.title|striptags }}{%
-endblock %} {% block extra_head %} {% import 'translations.html' as translations
-with context %} {% if translations.entry_hreflang(article) %} {{
+{% endif %} {% endblock %} {% block title %}{{ article.title|striptags }} | {{
+SITENAME }}{% endblock %} {% block extra_head %} {% import 'translations.html'
+as translations with context %} {% if translations.entry_hreflang(article) %} {{
 translations.entry_hreflang(article) }} {% endif %} {% endblock %} {% block
 content %}
 
@@ -15,24 +15,32 @@ content %}
     <h1 class="font-semibold text-3xl my-2">{{article.title}}</h1>
     <footer class="flex text-sm text-zinc-800 dark:text-zinc-400">
       <div class="flex text-xs text-zinc-800 dark:text-zinc-400">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i
+        >&nbsp;Posted&nbsp;on&nbsp;
         <time>{{ article.date|strftime('%B %d, %Y') }}</time>
+        {% if article.modified %}
+        <div class="flex text-xs text-zinc-800 dark:text-zinc-400">
+          <span>
+            &nbsp;and last updated
+            <a
+              class="underline"
+              href="https://github.com/dltj/dltj-blog/commits/main/content/{{ article.relative_source_path }}"
+              >{{ article.modified|strftime('%B %d, %Y') }}</a
+            ></span
+          >
+        </div>
+        {% endif %}
         <div>
           {% if article.readtime %}
-          <span>&nbsp;·&nbsp;{{ article.readtime }} min read</span>
-          {% endif %}
-        </div>
-        <div>
-          {% if article.author != '' %}
-          <span>&nbsp;·&nbsp;{{ article.author }}</span>
+          <span
+            >&nbsp;·&nbsp;<i class="far fa-clock" aria-hidden="true"></i
+            >&nbsp;{{ article.readtime
+            }}&nbsp;minutes&nbsp;reading&nbsp;time</span
+          >
           {% endif %}
         </div>
       </div>
     </footer>
-    {% if article.modified %}
-    <div class="flex text-xs text-zinc-800 dark:text-zinc-400">
-      <span>Last updated: {{ article.modified|strftime('%B %d, %Y') }}</span>
-    </div>
-    {% endif %}
   </header>
   {% if article.toc %}
   <details

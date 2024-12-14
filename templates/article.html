@@ -4,6 +4,15 @@
   name="description"
   content="{{ article.summary | striptags | safe | truncate(150) }}"
 />
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/robustlinks.css"
+/>
+<script
+  type="text/javascript"
+  src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/robustlinks-min.js"
+></script>
 {% endif %} {% endblock %} {% block title %}{{ article.title|striptags }} | {{
 SITENAME }}{% endblock %} {% block extra_head %} {% import 'translations.html'
 as translations with context %} {% if translations.entry_hreflang(article) %} {{

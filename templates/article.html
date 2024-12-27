@@ -4,6 +4,7 @@
   name="description"
   content="{{ article.summary | striptags | safe | truncate(150) }}"
 />
+{% endif %}
 <link
   rel="stylesheet"
   type="text/css"
@@ -13,9 +14,14 @@
   type="text/javascript"
   src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/robustlinks-min.js"
 ></script>
-{% endif %} {% endblock %} {% block title %}{{ article.title|striptags }} | {{
-SITENAME }}{% endblock %} {% block extra_head %} {% import 'translations.html'
-as translations with context %} {% if translations.entry_hreflang(article) %} {{
+<link rel="dns-prefetch" href="https://webmention.io/" />
+<link rel="preconnect" href="https://webmention.io/" />
+<link rel="preconnect" href="ws://webmention.io:8080/" />
+<link rel="pingback" href="https://webmention.io/dltj.org/xmlrpc" />
+<link rel="webmention" href="https://webmention.io/dltj.org/webmention" />
+{% endblock %} {% block title %}{{ article.title|striptags }} | {{ SITENAME }}{%
+endblock %} {% block extra_head %} {% import 'translations.html' as translations
+with context %} {% if translations.entry_hreflang(article) %} {{
 translations.entry_hreflang(article) }} {% endif %} {% endblock %} {% block
 content %}
 

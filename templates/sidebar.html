@@ -23,11 +23,12 @@
 <nav
   class="bg-gray-800 text-white fixed top-4 right-10 w-60 pb-5 sm:w-40 md:w-80 md:h-full md:top-0 md:left-0 md:block hidden sidebar"
   id="sidebar"
+  class="h-card"
 >
   <h1 class="font-semibold text-2xl px-4 my-10 hidden md:block text-center">
-    <a href="{{ SITEURL }}/">
+    <a class="u-url" href="{{ SITEURL }}/">
       <img
-        class="profile-picture"
+        class="profile-picture u-photo"
         src="{{ SITEURL }}/assets/images/{{ PROFILE_IMAGE }}"
       />
       {{ SITENAME }}
@@ -74,7 +75,7 @@
       <a
         href="{{ link }}"
         target="_blank"
-        rel="noopener noreferrer"
+        rel="noopener noreferrer me"
         title="{{ name|capitalize}}"
         aria-label="{{ name|capitalize }}"
         ><i class="fab fa-{{ name }} fa-lg"></i
@@ -105,7 +106,11 @@
     {% endif %}
   </ul>
   {% endif %}
-  <p class="px-3 pt-10 drop-shadow text-lg">Peter E. Murray</p>
+  <p class="px-3 pt-10 drop-shadow text-lg p-name">
+    <span class="p-given-name">Peter</span>
+    <abbr class="p-additional-name">E.</abbr>
+    <span class="p-family-name">Murray</span>
+  </p>
   <p class="italic px-3 text-sm">{{ BIO }}</p>
   <div class="px-3 py-3 text-sm">
     This site uses

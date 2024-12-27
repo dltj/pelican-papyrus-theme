@@ -19,21 +19,32 @@ as translations with context %} {% if translations.entry_hreflang(article) %} {{
 translations.entry_hreflang(article) }} {% endif %} {% endblock %} {% block
 content %}
 
-<main>
+<main class="h-entry">
   <header>
-    <h1 class="font-semibold text-3xl my-2">{{article.title}}</h1>
+    <h1 class="p-name font-semibold text-3xl my-2">{{article.title}}</h1>
     <footer class="flex text-sm text-zinc-800">
       <div class="flex text-xs text-zinc-800">
+        by&nbsp;
+        <span class="p-author author h-card vcard">
+          <a class="p-name fn u-url url" href="https://dltj.org" rel="me">
+            Peter E. Murray
+          </a> </span
+        >&nbsp;·&nbsp;
         <i class="far fa-calendar-alt" aria-hidden="true"></i
         >&nbsp;Posted&nbsp;on&nbsp;
-        <time>{{ article.date|strftime('%B %d, %Y') }}</time>
+        <time
+          class="dt-published"
+          datetime="{{ article.date|strftime('%Y-%m-%d %H:%M:%S') }}"
+          >{{ article.date|strftime('%B %d, %Y') }}</time
+        >
         {% if article.modified %}
         <div class="flex text-xs text-zinc-800">
           <span>
             &nbsp;and last updated
             <a
-              class="underline"
+              class="dt-updated underline"
               href="https://github.com/dltj/dltj-blog/commits/main/content/{{ article.relative_source_path }}"
+              datetime="{{ article.modified|strftime('%Y-%m-%d %H:%M:%S') }}"
               >{{ article.modified|strftime('%B %d, %Y') }}</a
             ></span
           >
@@ -58,7 +69,7 @@ content %}
   </details>
   {% endif %}
   <div
-    class="max-w-7xl container mx-auto my-8 text-zinc-800 prose lg:max-w-none prose-headings:text-zinc-800 prose-h1:text-3xl lg:prose-h1:text-3xl prose-headings:font-semibold prose-pre:bg-zinc-200 prose-pre:text-zinc-800 prose-blockquote:text-zinc-800 prose-a:text-slate-600 prose-a:font-normal prose-code:bg-zinc-200 prose-code:font-light prose-img:rounded-md text-left"
+    class="e-content max-w-7xl container mx-auto my-8 text-zinc-800 prose lg:max-w-none prose-headings:text-zinc-800 prose-h1:text-3xl lg:prose-h1:text-3xl prose-headings:font-semibold prose-pre:bg-zinc-200 prose-pre:text-zinc-800 prose-blockquote:text-zinc-800 prose-a:text-slate-600 prose-a:font-normal prose-code:bg-zinc-200 prose-code:font-light prose-img:rounded-md text-left"
   >
     {{ article.content }}
     <!-- <div class="aspect-w-16 aspect-h-9 mx-auto"></div> CSS placeholder -->
@@ -69,7 +80,7 @@ content %}
       <li
         class="bg-zinc-200 hover:bg-zinc-300 text-zinc-600 mb-2 mr-2 px-3 py-1.5 rounded-md transition ease-in active:-translate-y-1 active:scale-110 duration-75"
       >
-        <a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>
+        <a class="p-category" href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>
       </li>
       {% endfor %}
     </ul>

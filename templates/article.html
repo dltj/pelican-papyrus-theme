@@ -22,13 +22,13 @@ content %}
 <main>
   <header>
     <h1 class="font-semibold text-3xl my-2">{{article.title}}</h1>
-    <footer class="flex text-sm text-zinc-800 dark:text-zinc-400">
-      <div class="flex text-xs text-zinc-800 dark:text-zinc-400">
+    <footer class="flex text-sm text-zinc-800">
+      <div class="flex text-xs text-zinc-800">
         <i class="far fa-calendar-alt" aria-hidden="true"></i
         >&nbsp;Posted&nbsp;on&nbsp;
         <time>{{ article.date|strftime('%B %d, %Y') }}</time>
         {% if article.modified %}
-        <div class="flex text-xs text-zinc-800 dark:text-zinc-400">
+        <div class="flex text-xs text-zinc-800">
           <span>
             &nbsp;and last updated
             <a
@@ -52,15 +52,13 @@ content %}
     </footer>
   </header>
   {% if article.toc %}
-  <details
-    class="flex flex-col my-6 p-4 bg-zinc-200 dark:bg-zinc-800 rounded-lg"
-  >
+  <details class="flex flex-col my-6 p-4 bg-zinc-200 rounded-lg">
     <summary class="text-lg font-bold">Table of contents</summary>
     <div class="mx-4 px-4 underline">{{ article.toc }}</div>
   </details>
   {% endif %}
   <div
-    class="max-w-7xl container mx-auto my-8 text-zinc-800 dark:text-zinc-300 prose lg:max-w-none prose-headings:text-zinc-800 prose-headings:dark:text-zinc-300 prose-h1:text-3xl lg:prose-h1:text-3xl prose-headings:font-semibold prose-pre:bg-zinc-200 prose-pre:text-zinc-800 dark:prose-pre:bg-zinc-800 dark:prose-pre:text-zinc-200 prose-blockquote:text-zinc-800 dark:prose-blockquote:text-zinc-200 prose-a:text-slate-600 prose-a:font-normal dark:prose-a:text-slate-400 dark:prose-strong:text-zinc-200 dark:prose-code:text-zinc-200 dark:prose-code:bg-zinc-800 prose-code:bg-zinc-200 prose-code:font-light prose-img:rounded-md text-left"
+    class="max-w-7xl container mx-auto my-8 text-zinc-800 prose lg:max-w-none prose-headings:text-zinc-800 prose-h1:text-3xl lg:prose-h1:text-3xl prose-headings:font-semibold prose-pre:bg-zinc-200 prose-pre:text-zinc-800 prose-blockquote:text-zinc-800 prose-a:text-slate-600 prose-a:font-normal prose-code:bg-zinc-200 prose-code:font-light prose-img:rounded-md text-left"
   >
     {{ article.content }}
     <!-- <div class="aspect-w-16 aspect-h-9 mx-auto"></div> CSS placeholder -->
@@ -69,21 +67,21 @@ content %}
     <ul class="flex flex-wrap">
       {% for tag in article.tags|sort %}
       <li
-        class="bg-zinc-200 hover:bg-zinc-300 dark:hover:bg-zinc-800 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-300 mb-2 mr-2 px-3 py-1.5 rounded-md transition ease-in active:-translate-y-1 active:scale-110 duration-75"
+        class="bg-zinc-200 hover:bg-zinc-300 text-zinc-600 mb-2 mr-2 px-3 py-1.5 rounded-md transition ease-in active:-translate-y-1 active:scale-110 duration-75"
       >
         <a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>
       </li>
       {% endfor %}
     </ul>
-    <div class="flex w-full my-2 bg-zinc-200 dark:bg-zinc-700 rounded-lg">
+    <div class="flex w-full my-2 bg-zinc-200 rounded-lg">
       {% if article.next_article %}
-      <div class="w-1/2 hover:bg-zinc-300 dark:hover:bg-zinc-800 rounded-l-lg">
+      <div class="w-1/2 hover:bg-zinc-300 rounded-l-lg">
         <a
           class="flex flex-col pr-2"
           href="{{ SITEURL }}/{{ article.next_article.url }}"
         >
           <div class="mx-4 py-2 text-left">
-            <p class="text-zinc-600 dark:text-zinc-300 text-sm">« PREV PAGE</p>
+            <p class="text-zinc-600 text-sm">« PREV PAGE</p>
             <p class="text-left py-1 hover:underline">
               {{ article.next_article.title }}
             </p>
@@ -93,13 +91,13 @@ content %}
       {% else %}
       <div class="w-1/2 rounded-l-lg"></div>
       {% endif %} {% if article.prev_article %}
-      <div class="w-1/2 hover:bg-zinc-300 dark:hover:bg-zinc-800 rounded-r-lg">
+      <div class="w-1/2 hover:bg-zinc-300 rounded-r-lg">
         <a
           class="flex flex-col"
           href="{{ SITEURL }}/{{ article.prev_article.url }}"
         >
           <div class="text-right mx-4 py-2">
-            <p class="text-zinc-600 dark:text-zinc-300 text-sm">NEXT PAGE »</p>
+            <p class="text-zinc-600 text-sm">NEXT PAGE »</p>
             <p class="text-right py-1 hover:underline">
               {{ article.prev_article.title }}
             </p>
@@ -110,7 +108,7 @@ content %}
     </div>
     {% if SHARE %}
     <div
-      class="flex bg-zinc-200 dark:bg-zinc-700 py-2 rounded-lg justify-center space-x-2 text-xs"
+      class="flex bg-zinc-200 py-2 rounded-lg justify-center space-x-2 text-xs"
     >
       {% for name, link in SHARE %}
       <ul>
